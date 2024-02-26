@@ -1,0 +1,23 @@
+printf("z= %i\n", z); //Will print the value of z which is 5
+
+    {
+        printf("z = %i\n", z);  // Will print the value of z (5)
+        z = 6;  // Will change the value of z to 6
+        printf("z = %i\n", z);  // Will print the updated value of z (6)
+
+        int z = 12;  // Declares a new variable z within this block scope
+        printf("z = %i\n", z);  // Will print the value of the new z (12)
+
+        z = 7;  // Will update the value of the inner z to 7
+        printf("z = %i\n", z);  // Will print the updated value of the inner z (7)
+    }
+
+    printf("z = %i\n", z);  // Will print the value of the outer z (6)
+}
+SO the output will be:
+z = 5
+z = 5
+z = 6
+z = 12
+z = 7
+z = 6
