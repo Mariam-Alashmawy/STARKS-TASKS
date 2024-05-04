@@ -2,49 +2,51 @@
 #include <stdlib.h>
 
 // Definition of a structure for each node in the stack
-struct Node {
-    int data;
-    struct Node* next;
-};
+typedef struct stacknode {
+    StackEntry entry;
+    struct stacknode *next;
+}StackNode;
 
 // Definition of a structure for the stack
-struct Stack {
-    struct Node* top;
-};
+typedef struct stack {
+    StackNode *top;
+}Stack;
 
 // Function to create an empty stack
-struct Stack* createStack() {
-    struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));
-    stack->top = NULL;
-    return stack;
-}
-
-// Function to check if the stack is empty
-int isEmpty(struct Stack* stack) {
-    return (stack->top == NULL);
+void createstack(Stack *ps) {
+    ps->top = NULL;
 }
 
 // Function to push an element onto the stack
-void push(struct Stack* stack, int data) {
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-    newNode->data = data;
-    newNode->next = stack->top;
-    stack->top = newNode;
-    printf("%d pushed to stack\n", data);
+void push(StackEntry e, Stack *ps) {
+    StackNode *pn = (StackNode*)malloc(sizeof(StackNode));
+    pn->entry = e;
+    pn->next = ps->top;
+    ps->top = pn;
 }
 
 // Function to pop an element from the stack
-int pop(struct Stack* stack) {
-    if (isEmpty(stack)) {
-        printf("Stack is empty\n");
-        return -1;
-    }
-    struct Node* temp = stack->top;
-    int poppedData = temp->data;
-    stack->top = temp->next;
+void pop(StackEntry *pe, Stack *ps) {
+    StackNode *temp;
+    *pe = ps->top->entry;
+    temp = ps->top;
+    ps->top = ps->top->next;
     free(temp);
-    return poppedData;
 }
+
+// Function to check if the stack is empty
+int StackFull(Stack *ps) {
+    return 0;
+}
+
+// Function to check if the stack is full
+int StackEmpty(Stack *ps) {
+    return ps->top == NULL;
+}
+
+
+
+
 
 // Function to peek the top element of the stack
 int peek(struct Stack* stack) {
@@ -70,3 +72,12 @@ void display(struct Stack* stack) {
     printf("\n");
 }
 
+
+//user lrvel
+void main
+{
+stack s;
+StackEntry e;
+createstack(&s);
+push(e, &s);
+pop(&e, &s);
