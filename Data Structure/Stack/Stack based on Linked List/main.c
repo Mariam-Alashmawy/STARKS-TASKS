@@ -10,11 +10,13 @@ typedef struct stacknode {
 // Definition of a structure for the stack
 typedef struct stack {
     StackNode *top;
+    int size;
 }Stack;
 
 // Function to create an empty stack
 void createstack(Stack *ps) {
     ps->top = NULL;
+    ps->size = 0;
 }
 
 // Function to push an element onto the stack
@@ -23,6 +25,7 @@ void push(StackEntry e, Stack *ps) {
     pn->entry = e;
     pn->next = ps->top;
     ps->top = pn;
+    ps->size++;
 }
 
 // Function to pop an element from the stack
@@ -32,6 +35,7 @@ void pop(StackEntry *pe, Stack *ps) {
     temp = ps->top;
     ps->top = ps->top->next;
     free(temp);
+    ps->size--;
 }
 
 // Function to check if the stack is empty
@@ -44,40 +48,35 @@ int StackEmpty(Stack *ps) {
     return ps->top == NULL;
 }
 
-
-
-
-
-// Function to peek the top element of the stack
-int peek(struct Stack* stack) {
-    if (isEmpty(stack)) {
-        printf("Stack is empty\n");
-        return -1; // indicating stack underflow
-    }
-    return stack->top->data;
+//Function to clear the stack
+void ClearStack(Stack *ps) {
+StackNode *pn = ps->top;
+StackNode *qn = ps->top;
+while(pn){
+  pn = pn->next;
+  free(qn);
+  qn = pn;
+}
+ps->top = NULL;
+ps->size = 0;
 }
 
-// Function to display the stack
-void display(struct Stack* stack) {
-    if (isEmpty(stack)) {
-        printf("Stack is empty\n");
-        return;
-    }
-    struct Node* current = stack->top;
-    printf("Stack elements: ");
-    while (current != NULL) {
-        printf("%d ", current->data);
-        current = current->next;
-    }
-    printf("\n");
+// Function to traverse the elements of the stack
+void TraverseStack(Stack *ps, void(*pf)(StackEntry)) {
+StackNode *pn = ps->top;
+while(pn) {
+  (*pf)(pn->entry);
+  pn = pn->next;
+}
 }
 
+//Function to check the size of the stack
+int StackSize(Stack *ps) {
+int x;
+StackNode *pn = ps->top;
+for(x=0;pn;pn=pn->next) {
+  x++;
+}
+return x;
+}
 
-//user lrvel
-void main
-{
-stack s;
-StackEntry e;
-createstack(&s);
-push(e, &s);
-pop(&e, &s);
