@@ -1,3 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+//User level
+//Interface
+void Display(StackEntry e)
+{
+    printf(e is: %d\n,e);
+}
+int main()
+{
+   StackEntry e;
+   Stack s;
+   CreateStack(&s);
+   if(!StackFULL(&s))
+    Push(e, &s);
+   if(!StackEMPTY(&s))
+    pop(&e, &s);
+   if(!StackEMPTY(&s))
+    StackTop(&e, &s);
+   X = StackSize(&s);
+   ClearStack(&s);
+   TraverseStack(&s, &Display);
+
+}
 //implementation of the stack based on array
 //1- stack type definition
 struct stack{
