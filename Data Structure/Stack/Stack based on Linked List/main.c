@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 // Definition of a structure for each node in the stack
 typedef struct stacknode {
     StackEntry entry;
@@ -14,7 +15,7 @@ typedef struct stack {
 }Stack;
 
 // Function to create an empty stack
-void createstack(Stack *ps) {
+void CreateStack(Stack *ps) {
     ps->top = NULL;
     ps->size = 0;
 }
@@ -38,12 +39,12 @@ void pop(StackEntry *pe, Stack *ps) {
     ps->size--;
 }
 
-// Function to check if the stack is empty
+// Function to check if the stack is full
 int StackFull(Stack *ps) {
     return 0;
 }
 
-// Function to check if the stack is full
+// Function to check if the stack is empty
 int StackEmpty(Stack *ps) {
     return ps->top == NULL;
 }
@@ -79,4 +80,21 @@ for(x=0;pn;pn=pn->next) {
 }
 return x;
 }
+// Display function
+void Display(StackEntry e)
+{
+    printf(e is: %d\n,e);
+}
 
+//User level
+int main()
+{
+   StackEntry e;
+   Stack s;
+   CreateStack(&s);
+   Push(e, &s);
+   pop(&e, &s);
+   ClearStack(&s);
+   TraverseStack(&s, &Display);
+   X = StackSize(&s);
+}
