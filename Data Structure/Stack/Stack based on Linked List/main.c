@@ -23,10 +23,15 @@ void CreateStack(Stack *ps) {
 // Function to push an element onto the stack
 void push(StackEntry e, Stack *ps) {
     StackNode *pn = (StackNode*)malloc(sizeof(StackNode));
+    if(!pn)
+        return 0;
+   else {
     pn->entry = e;
     pn->next = ps->top;
     ps->top = pn;
     ps->size++;
+    return 1;
+   }
 }
 
 // Function to pop an element from the stack
